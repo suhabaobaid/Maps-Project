@@ -2,6 +2,7 @@
 
 const locations = [
 	{
+		id: 1,
 		name: 'Octopus Book & Cafe',
 		location: {
 			lat: 36.88202233161344,
@@ -9,6 +10,7 @@ const locations = [
 		},
 	},
 	{
+		id: 2,
 		name: 'Çay-Tea\'s Lunchroom & Deco Home',
 		location: {
 			lat: 36.88380687475678,
@@ -16,6 +18,7 @@ const locations = [
 		},
 	},
 	{
+		id: 3,
 		name: 'Starbucks',
 		location: {
 			lat: 36.88274438051892,
@@ -23,6 +26,7 @@ const locations = [
 		},
 	},
 	{
+		id: 4,
 		name: 'DOSPRESSO Bombty Coffee & Donut',
 		location: {
 			lat: 36.881793,
@@ -30,6 +34,7 @@ const locations = [
 		},
 	},
 	{
+		id: 5,
 		name: 'Tchibo',
 		location: {
 			lat: 36.881256630420886,
