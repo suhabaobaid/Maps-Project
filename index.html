@@ -15,11 +15,30 @@
 		/>
 
 		<!-- Custom style -->
+		<link rel="stylesheet" href="./css/style.css" />
+
+		<!-- Here maps dependencies -->
 		<link
 			rel="stylesheet"
-			href="./css/style.css"
+			type="text/css"
+			href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1533195059"
 		/>
-		<!-- Here maps dependencies -->
+		<script
+			type="text/javascript"
+			src="https://js.api.here.com/v3/3.0/mapsjs-core.js"
+		></script>
+		<script
+			type="text/javascript"
+			src="https://js.api.here.com/v3/3.0/mapsjs-service.js"
+		></script>
+		<script
+			type="text/javascript"
+			src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"
+		></script>
+		<script
+			type="text/javascript"
+			src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"
+		></script>
 	</head>
 	<body>
 		<nav class="navbar navbar-dark bg-dark">
@@ -32,16 +51,16 @@
 					aria-label="Search"
 					data-bind="textInput: searchInput"
 				/>
-				<!--
-					<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-				-->
 			</form>
 		</nav>
 
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-9"></div>
-				<ul class="list-group location-list col-3" data-bind="foreach: filteredLocations">
+				<div class="col-9" id="map"></div>
+				<ul
+					class="list-group location-list col-3"
+					data-bind="foreach: filteredLocations"
+				>
 					<a
 						class="list-group-item list-group-item-action"
 						data-bind="text: name, click: $parent.setSelectedLocation, css: { active: $parent.selectedLocation() ? $parent.selectedLocation().name === name: false }"
@@ -49,6 +68,7 @@
 				</ul>
 			</div>
 		</div>
+
 		<!-- Adding Boostrap dependencies -->
 		<script
 			src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -68,6 +88,7 @@
 		<!-- Adding knockout and other js dependencies -->
 		<script src="./js/lib/knockout.js"></script>
 		<script src="./js/data.js"></script>
+		<script src="./js/maps.js"></script>
 		<script src="./js/app.js"></script>
 	</body>
 </html>
