@@ -30,10 +30,10 @@ function ViewModel() {
 	self.filteredLocations = ko.computed(function() {
 		return self.locationList().filter(function(l, index) {
 			if (l.name().toLowerCase().includes(self.searchInput().toLowerCase())) {
-				map.addObject(markers[index]);
+				map.addObject((markers[index]).setVisibility(true));
 				return true;
 			}
-			map.removeObject(markers[index]);
+			map.addObject((markers[index]).setVisibility(false));
 			return false;
 		});
 	});
