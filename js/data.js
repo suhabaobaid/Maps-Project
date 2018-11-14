@@ -1,6 +1,6 @@
 /* Model Data */
 
-const LOCATIONS = [
+const locations = [
 	{
 		name: 'Octopus Book & Cafe',
 		location: {
@@ -20,13 +20,6 @@ const LOCATIONS = [
 		location: {
 			lat: 36.88274438051892,
 			lng: 30.70879340171814,
-		},
-	},
-	{
-		name: 'DOSPRESSO Bombty Coffee & Donut',
-		location: {
-			lat: 36.881793,
-			lng: 30.707895,
 		},
 	},
 	{
