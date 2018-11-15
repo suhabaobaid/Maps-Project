@@ -1,3 +1,6 @@
+/* Helper functions */
+
+
 /* Location Model */
 function Location(data) {
 	this.id = ko.observable(data.id);
@@ -25,9 +28,6 @@ function ViewModel() {
 		markers.push((new H.map.Marker({lat: l.location.lat, lng: l.location.lng})).setIcon(defaultIcon));
 	});
 
-	// add all markers to the map
-	// map.addObjects(markers);
-
 	// Create a computed observable to be the filtered array
 	self.filteredLocations = ko.computed(function() {
 		return self.locationList().filter(function(l, index) {
@@ -47,6 +47,7 @@ function ViewModel() {
 		}
 		self.selectedLocation(l);
 		map.addObject((markers[l.id() - 1]).setIcon(customIcon));
+		createInfoBubble(self.selectedLocation().location());
 	}
 }
 

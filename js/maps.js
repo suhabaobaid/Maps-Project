@@ -12,6 +12,30 @@ function moveMapToBerlin(map) {
 	map.setZoom(16);
 }
 
+/**
+ * Removes all Info bubbles that were previously created
+ *
+ */
+function removeInfoBubbles() {
+	ui.getBubbles().forEach(bub => ui.removeBubble(bub));
+}
+
+/**
+ * Creates an Info Bubble over the location
+ *
+ * @param  {Object} location		 location of the place, consists of lng and lat
+ */
+function createInfoBubble(location) {
+	// Remove all other Info bubbles
+	removeInfoBubbles();
+	// Create info bubble
+	var bubble = new H.ui.InfoBubble({ lat: location.lat, lng: location.lng }, {
+		content: '<b>Hello World!</b>'
+	});
+	// Add info bubble to the UI:
+	ui.addBubble(bubble);
+}
+
 // Step 1: initialize communication with the platform
 var platform = new H.service.Platform({
 	app_id: APP_ID,
