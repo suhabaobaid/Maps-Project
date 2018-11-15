@@ -1,5 +1,55 @@
+/* Constants */
+const PIC_SIZE = '100x100';
+
+const FORESQUARE_CLIENT_ID = 'FBO5NACEDE3T1NIUT1W3X2LMSA2X5ANDBVEYYRUHGP4SQ3XW';
+const FORESQUARE_CLIENT_SECRET = 'NI1GIII3UJYRPOP3Y04SDD5GNYXCNALG5K4112DWARSEJPMF';
+const FORESQURE_AUTH = `
+	client_id=${FORESQUARE_CLIENT_ID}&
+	client_secret=${FORESQUARE_CLIENT_SECRET}&v=20180323&`;
+
+const VENUE_SEARCH_URL = `
+	https://api.foursquare.com/v2/venues/search?${FORESQURE_AUTH}`;
+
+
 /* Helper functions */
 
+function constructImage(imageInfo) {
+	return imageInfo.prefix + PIC_SIZE + imageInfo.suffix;
+}
+
+function getVenueInfo(venue) {
+	$.ajax({
+		url: `${VENUE_SEARCH_URL}ll=${venue.location.lat},${venue.location.lng}&query=${venue.name}`,
+		success: function(result) {
+			if (result.response.venues[0]) {
+				let resultVenue = result.response.venues[0];
+				let content = `
+					<h6>${venue.name}</h6>
+					<p class="bubble-info">address: ${resultVenue.location.address}</p>`;
+				$.ajax({
+					url: `https://api.foursquare.com/v2/venues/${resultVenue.id}/photos?${FORESQURE_AUTH}`,
+					success: function(result) {
+						// if there are photos of the place
+						if(result.response.photos.count > 0) {
+							// Get the first image only
+							let imageInfo = result.response.photos.items[0];
+							content += `
+								<img src="${constructImage(imageInfo)}">
+							`;
+						}
+						createInfoBubble(venue.location, content);
+					},
+					error: function(error) {
+						alert(`An error has occurred: ${error.status},  ${error.statusText}`);
+					},
+				});
+			}
+		},
+		error: function(error) {
+			alert(`An error has occurred: ${error.status},  ${error.statusText}`);
+		},
+	});
+}
 
 /* Location Model */
 function Location(data) {
@@ -30,7 +80,7 @@ function ViewModel() {
 			.setData({ name: l.name, location: l.location });
 		markers.push(marker);
 		marker.addEventListener('tap', function (evt){
-			console.log(evt.target.getData());
+			getVenueInfo(evt.target.getData());
 		});
 	});
 
@@ -40,6 +90,7 @@ function ViewModel() {
 			if (l.name().toLowerCase().includes(self.searchInput().toLowerCase())) {
 				let marker = (markers[index]).setVisibility(true)
 				map.addObject(marker);
+				removeInfoBubbles();
 				return true;
 			}
 			map.addObject((markers[index]).setVisibility(false));
@@ -54,7 +105,10 @@ function ViewModel() {
 		}
 		self.selectedLocation(l);
 		map.addObject((markers[l.id() - 1]).setIcon(customIcon));
-		createInfoBubble(self.selectedLocation().location());
+		getVenueInfo({
+			name: self.selectedLocation().name(),
+			location: self.selectedLocation().location()
+		});
 	}
 }
 

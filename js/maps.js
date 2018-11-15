@@ -8,8 +8,8 @@ const APP_CODE = "Mdw0jv4ATW-4XLiGAWHvHg";
  * @param  {H.Map} map      A HERE Map instance within the application
  */
 function moveMapToBerlin(map) {
-	map.setCenter({ lat: 36.883438, lng: 30.704852 });
-	map.setZoom(16);
+	map.setCenter({ lat: 36.882373, lng: 30.708695 });
+	map.setZoom(15);
 }
 
 /**
@@ -25,12 +25,12 @@ function removeInfoBubbles() {
  *
  * @param  {Object} location		 location of the place, consists of lng and lat
  */
-function createInfoBubble(location) {
+function createInfoBubble(location, content) {
 	// Remove all other Info bubbles
 	removeInfoBubbles();
 	// Create info bubble
 	var bubble = new H.ui.InfoBubble({ lat: location.lat, lng: location.lng }, {
-		content: '<b>Hello World!</b>'
+		content: content
 	});
 	// Add info bubble to the UI:
 	ui.addBubble(bubble);
