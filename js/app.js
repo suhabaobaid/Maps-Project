@@ -25,14 +25,21 @@ function ViewModel() {
 
 	locations.forEach(function(l) {
 		self.locationList.push(new Location(l));
-		markers.push((new H.map.Marker({lat: l.location.lat, lng: l.location.lng})).setIcon(defaultIcon));
+		let marker = (new H.map.Marker({lat: l.location.lat, lng: l.location.lng}))
+			.setIcon(defaultIcon)
+			.setData({ name: l.name, location: l.location });
+		markers.push(marker);
+		marker.addEventListener('tap', function (evt){
+			console.log(evt.target.getData());
+		});
 	});
 
 	// Create a computed observable to be the filtered array
 	self.filteredLocations = ko.computed(function() {
 		return self.locationList().filter(function(l, index) {
 			if (l.name().toLowerCase().includes(self.searchInput().toLowerCase())) {
-				map.addObject((markers[index]).setVisibility(true));
+				let marker = (markers[index]).setVisibility(true)
+				map.addObject(marker);
 				return true;
 			}
 			map.addObject((markers[index]).setVisibility(false));
