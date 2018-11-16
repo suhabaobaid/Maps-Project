@@ -102,6 +102,7 @@ function ViewModel() {
 
 	// Create the markers and custom icon
 	var markers = [];
+	var selectedMarker;
 	var customIcon = new H.map.Icon("http://www.discoveralbania.al/wp-content/uploads/2017/05/pin1.png", {size: {w: 56, h: 56}});
 	var defaultIcon = new H.map.Icon("http://www.uidownload.com/files/402/318/362/arrow-coordinates-direction-location-locations-marker-navigation-icon.png", {size: {w: 56, h:56}});
 	var self = this;
@@ -119,6 +120,12 @@ function ViewModel() {
 			.setData({ name: l.name, location: l.location });
 		markers.push(marker);
 		marker.addEventListener('tap', function (evt){
+			// Reset if previously selected Marker
+			if (selectedMarker) {
+				selectedMarker.setIcon(defaultIcon);
+			}
+			selectedMarker = this;
+			this.setIcon(customIcon);
 			getVenueInfo(evt.target.getData());
 		});
 	});
