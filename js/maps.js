@@ -3,11 +3,11 @@ const APP_ID = "tYoPygXoTYqQ8Wa2KyaJ";
 const APP_CODE = "Mdw0jv4ATW-4XLiGAWHvHg";
 
 /**
- * Moves the map to display over Berlin
+ * Moves the map to display over Antalya
  *
  * @param  {H.Map} map      A HERE Map instance within the application
  */
-function moveMapToBerlin(map) {
+function moveMapToAntalya(map) {
 	map.setCenter({ lat: 36.882373, lng: 30.708695 });
 	map.setZoom(15);
 }
@@ -24,6 +24,7 @@ function removeInfoBubbles() {
  * Creates an Info Bubble over the location
  *
  * @param  {Object} location		 location of the place, consists of lng and lat
+ * @param  {string} content 		 string to be inserted as innerhtml of html string
  */
 function createInfoBubble(location, content) {
 	// Remove all other Info bubbles
@@ -62,4 +63,4 @@ var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 var ui = H.ui.UI.createDefault(map, defaultLayers);
 
 // Now use the map as required...
-moveMapToBerlin(map);
+moveMapToAntalya(map);

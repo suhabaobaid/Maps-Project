@@ -13,11 +13,46 @@ const VENUE_SEARCH_URL = `
 
 /* Helper functions */
 
+/**
+ * constructs the image received from FORESQUARE
+ *
+ * @param {Object} imageInfo	object consisting of image details
+ */
 function constructImage(imageInfo) {
 	return imageInfo.prefix + PIC_SIZE + imageInfo.suffix;
 }
 
+/**
+ * Blocks the UI with a please wait message to enhance user experience
+ */
+function blockUI() {
+	$.blockUI({ css: {
+		border: 'none',
+		padding: '15px',
+		backgroundColor: '#000',
+		'-webkit-border-radius': '10px',
+		'-moz-border-radius': '10px',
+		opacity: .5,
+		color: '#fff'
+	} });
+}
+
+/**
+ * Unblocks the UI
+ */
+function unblockUI() {
+	$.unblockUI();
+}
+
+/**
+ * gets the venue information and image
+ * constructs an infobubble with information upon success
+ * or alerts error upon failure of the request
+ *
+ * @param {Object} venue	object consisting of venue
+ */
 function getVenueInfo(venue) {
+	blockUI();
 	$.ajax({
 		url: `${VENUE_SEARCH_URL}ll=${venue.location.lat},${venue.location.lng}&query=${venue.name}`,
 		success: function(result) {
@@ -37,15 +72,18 @@ function getVenueInfo(venue) {
 								<img src="${constructImage(imageInfo)}">
 							`;
 						}
+						unblockUI();
 						createInfoBubble(venue.location, content);
 					},
 					error: function(error) {
+						unblockUI();
 						alert(`An error has occurred: ${error.status},  ${error.statusText}`);
 					},
 				});
 			}
 		},
 		error: function(error) {
+			unblockUI();
 			alert(`An error has occurred: ${error.status},  ${error.statusText}`);
 		},
 	});
@@ -59,7 +97,7 @@ function Location(data) {
 }
 
 
-/* View Model */
+/* ViewModel */
 function ViewModel() {
 
 	// Create the markers and custom icon
@@ -73,6 +111,7 @@ function ViewModel() {
 	self.searchInput = ko.observable("");
 	self.selectedLocation = ko.observable();
 
+	// Create markers and save them
 	locations.forEach(function(l) {
 		self.locationList.push(new Location(l));
 		let marker = (new H.map.Marker({lat: l.location.lat, lng: l.location.lng}))
