@@ -30,15 +30,5 @@ Selecting a place from the list
 Filter places
 <img src="assets/filterPlaces.png" width="800" height="200">
 
-# Issues
-
-- No validation on forms
-
-## Possible improvements
-
-- Implementing CSRF protection on CRUD operations.
-- Image upload to associate with items and/or categories
-- Front-end improvements
-
 
 
