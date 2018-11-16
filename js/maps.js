@@ -3,7 +3,7 @@ const APP_ID = "tYoPygXoTYqQ8Wa2KyaJ";
 const APP_CODE = "Mdw0jv4ATW-4XLiGAWHvHg";
 
 /**
- * Moves the map to display over Antalya
+ * @description Moves the map to display over Antalya
  *
  * @param  {H.Map} map      A HERE Map instance within the application
  */
@@ -13,15 +13,14 @@ function moveMapToAntalya(map) {
 }
 
 /**
- * Removes all Info bubbles that were previously created
- *
+ * @description Removes all Info bubbles that were previously created
  */
 function removeInfoBubbles() {
 	ui.getBubbles().forEach(bub => ui.removeBubble(bub));
 }
 
 /**
- * Creates an Info Bubble over the location
+ * @description Creates an Info Bubble over the location
  *
  * @param  {Object} location		 location of the place, consists of lng and lat
  * @param  {string} content 		 string to be inserted as innerhtml of html string

@@ -14,16 +14,17 @@ const VENUE_SEARCH_URL = `
 /* Helper functions */
 
 /**
- * constructs the image received from FORESQUARE
+ * @description constructs the image received from FORESQUARE
  *
  * @param {Object} imageInfo	object consisting of image details
+ * @returns {String} picture's url
  */
 function constructImage(imageInfo) {
 	return imageInfo.prefix + PIC_SIZE + imageInfo.suffix;
 }
 
 /**
- * Blocks the UI with a please wait message to enhance user experience
+ * @description Blocks the UI with a please wait message to enhance user experience
  */
 function blockUI() {
 	$.blockUI({ css: {
@@ -38,14 +39,14 @@ function blockUI() {
 }
 
 /**
- * Unblocks the UI
+ * @description Unblocks the UI
  */
 function unblockUI() {
 	$.unblockUI();
 }
 
 /**
- * gets the venue information and image
+ * @description gets the venue information and image
  * constructs an infobubble with information upon success
  * or alerts error upon failure of the request
  *
