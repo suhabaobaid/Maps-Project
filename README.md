@@ -23,12 +23,12 @@ Third-party api with FORESQUARE and HERE maps is used in this project. Technolog
 - open index.html in your browser
 
 ## ScreenShots
-Default
-<img src="assets/default.png" width="800" height="200">
-Selecting a place from the list
-<img src="assets/selectPlace.png" width="800" height="200">
-Filter places
-<img src="assets/filterPlaces.png" width="800" height="200">
+- Default
+<img src="assets/default.png" width="800" height="400">
+- Selecting a place from the list
+<img src="assets/selectPlace.png" width="800" height="400">
+- Filter places
+<img src="assets/filterPlaces.png" width="800" height="400">
 
 
 
