@@ -43,29 +43,31 @@
 	<body>
 		<nav class="navbar navbar-dark bg-dark">
 			<a class="navbar-brand" href="#">Best Cafe's in Antalya</a>
-			<form class="form-inline my-2 my-lg-0">
-				<input
-					class="form-control mr-sm-2"
-					type="search"
-					placeholder="Search"
-					aria-label="Search"
-					data-bind="textInput: searchInput"
-				/>
-			</form>
 		</nav>
 
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-9 map" id="map"></div>
-				<ul
-					class="list-group col-3 location-list"
-					data-bind="foreach: filteredLocations"
-				>
-					<a
-						class="list-group-item list-group-item-action"
-						data-bind="text: name, click: $parent.setSelectedLocation, css: { active: $parent.selectedLocation() ? $parent.selectedLocation().name === name: false }"
-					></a>
-				</ul>
+				<div class="col-sm-12 col-md-3 bg-dark">
+					<form>
+						<input
+							class="form-control"
+							type="search"
+							placeholder="Search"
+							aria-label="Search"
+							data-bind="textInput: searchInput"
+						/>
+					</form>
+					<ul
+						class="list-group location-list"
+						data-bind="foreach: filteredLocations"
+					>
+						<a
+							class="list-group-item list-group-item-action"
+							data-bind="text: name, click: $parent.setSelectedLocation, css: { active: $parent.selectedLocation() ? $parent.selectedLocation().name === name: false }"
+						></a>
+					</ul>
+				</div>
+				<div class="col-md-9 map" id="map"></div>
 			</div>
 		</div>
 
